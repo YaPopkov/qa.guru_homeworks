@@ -1,15 +1,17 @@
 import os
+import time
+
 from selene import browser, be, have
 from selenium.webdriver import Keys
 
 
 def test_form(chrome_browser):
     browser.open(browser.config.base_url + "/automation-practice-form")
-    browser.execute_script("document.body.style.zoom='70%';")
     browser.element("#firstName").should(be.blank).type("FirstName")
     browser.element("#lastName").should(be.blank).type("LastName")
     browser.element("#userEmail").should(be.blank).type("name@example.com")
     browser.element('[for="gender-radio-1"]').should(have.text("Male")).click()
+    browser.element(".custom-control-inline:nth-child(1)").click()
     browser.element("#userNumber").should(be.blank).type("7800000000")
     browser.element("#dateOfBirthInput").send_keys(Keys.CONTROL, "a").type(
         "01 Jan 2000"
@@ -32,6 +34,10 @@ def test_form(chrome_browser):
     browser.element("#react-select-3-option-0").should(have.text("NCR")).click()
     browser.element("#city").click()
     browser.element("#react-select-4-option-0").should(have.text("Delhi")).click()
+    try:
+        browser.execute_script("document.querySelector('.GoogleActiveViewElement').remove()")
+    except:
+        pass
     browser.element("#submit").click()
     browser.element("tr:nth-child(1) td:nth-child(2)").should(
         have.text("FirstName LastName")
