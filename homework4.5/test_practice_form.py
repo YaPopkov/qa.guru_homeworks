@@ -5,6 +5,7 @@ from selenium.webdriver import Keys
 
 def test_form(chrome_browser):
     browser.open(browser.config.base_url + "/automation-practice-form")
+    browser.execute_script("document.body.style.zoom='70%';")
     browser.element("#firstName").should(be.blank).type("FirstName")
     browser.element("#lastName").should(be.blank).type("LastName")
     browser.element("#userEmail").should(be.blank).type("name@example.com")
