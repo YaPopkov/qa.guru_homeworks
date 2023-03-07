@@ -61,6 +61,7 @@ def test_form(chrome_browser):
     browser.element("tr:nth-child(10) td:nth-child(2)").should(have.text("NCR Delhi"))
     browser.element("#closeLargeModal").click()
 
-def new_test():
-    pass
+
+def no_test():
+    print('pass')
 
