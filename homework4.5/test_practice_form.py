@@ -62,5 +62,5 @@ def test_form(chrome_browser):
     browser.element("#closeLargeModal").click()
 
 def new_test():
-    pass
+    """should be conflict"""
 
