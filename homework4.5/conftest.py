@@ -7,8 +7,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 @pytest.fixture()
 def chrome_browser():
-    browser.config.window_width = 1900
-    browser.config.window_height = 1624
+    browser.config.window_width = 1920
+    browser.config.window_height = 1080
     browser.config.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     browser.config.base_url = 'https://demoqa.com'
     yield
