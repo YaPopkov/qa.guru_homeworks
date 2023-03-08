@@ -30,14 +30,16 @@ def test_form(chrome_browser):
     browser.element("#currentAddress").should(be.blank).type(
         "Main St, Apt 2, SPb, Russia, 190000"
     )
-    browser.element("#state").click()
-    browser.element("#react-select-3-option-0").should(have.text("NCR")).click()
-    browser.element("#city").click()
-    browser.element("#react-select-4-option-0").should(have.text("Delhi")).click()
+    browser.execute_script("document.querySelector('footer').remove()")
+    browser.execute_script("document.querySelector('#fixedban').remove()")
     try:
         browser.execute_script("document.querySelector('.GoogleActiveViewElement').remove()")
     except:
         pass
+    browser.element("#state").click()
+    browser.element("#react-select-3-option-0").should(have.text("NCR")).click()
+    browser.element("#city").click()
+    browser.element("#react-select-4-option-0").should(have.text("Delhi")).click()
     browser.element("#submit").click()
     browser.element("tr:nth-child(1) td:nth-child(2)").should(
         have.text("FirstName LastName")
@@ -60,8 +62,3 @@ def test_form(chrome_browser):
     )
     browser.element("tr:nth-child(10) td:nth-child(2)").should(have.text("NCR Delhi"))
     browser.element("#closeLargeModal").click()
-
-
-def no_test():
-    print('pass')
-
